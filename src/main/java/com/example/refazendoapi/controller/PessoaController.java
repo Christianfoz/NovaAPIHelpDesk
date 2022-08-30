@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
@@ -28,7 +29,7 @@ public class PessoaController {
     @GetMapping("/{id}")
     @ApiOperation(value = "Buscar Pessoa")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Response<Pessoa>> buscarPessoa(@PathVariable("id") int id){
+    public ResponseEntity<Response<Pessoa>> buscarPessoa(@PathVariable("id") UUID id){
         Response<Pessoa> response = new Response<>();
         response.setData(pessoaService.buscarPorId(id));
         response.setTimeStamp(LocalDateTime.now());
@@ -90,7 +91,7 @@ public class PessoaController {
 
     @PutMapping("/{id}")
     @ApiOperation(value = "Atualizar Pessoa")
-    public ResponseEntity<Response<Pessoa>> atualizarPessoa(@PathVariable("id") int id, @Valid @RequestBody Pessoa pessoa){
+    public ResponseEntity<Response<Pessoa>> atualizarPessoa(@PathVariable("id") UUID id, @Valid @RequestBody Pessoa pessoa){
         Response<Pessoa> response = new Response<>();
         response.setData(pessoaService.criarPessoa(pessoa));
         response.setTimeStamp(LocalDateTime.now());
@@ -111,7 +112,7 @@ public class PessoaController {
     @DeleteMapping("/{id}")
     @ApiOperation(value = "Deletar Pessoa")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Response<Pessoa>> deletarPessoa(@PathVariable("id") int id){
+    public ResponseEntity<Response<Pessoa>> deletarPessoa(@PathVariable("id") UUID id){
         Response<Pessoa> response = new Response<>();
         response.setData(pessoaService.deletarPessoa(id));
         response.setTimeStamp(LocalDateTime.now());

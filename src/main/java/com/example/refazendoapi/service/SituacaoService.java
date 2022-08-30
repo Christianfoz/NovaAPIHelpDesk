@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class SituacaoService implements SituacaoInterface {
@@ -27,7 +28,7 @@ public class SituacaoService implements SituacaoInterface {
     }
 
     @Override
-    public Situacao buscarSituacao(int id) {
+    public Situacao buscarSituacao(UUID id) {
         try{
             Optional<Situacao> situacao = situacaoRepository.findById(id);
             if(situacao.isPresent()){
@@ -54,7 +55,7 @@ public class SituacaoService implements SituacaoInterface {
     }
 
     @Override
-    public Situacao atualizarSituacao(int id, Situacao situacao) {
+    public Situacao atualizarSituacao(UUID id, Situacao situacao) {
         try{
             if(id == situacao.getIdSituacao()){
                 Optional<Situacao> situacao1 = situacaoRepository.findById(id);
@@ -76,7 +77,7 @@ public class SituacaoService implements SituacaoInterface {
     }
 
     @Override
-    public Situacao deletarSituacao(int id) {
+    public Situacao deletarSituacao(UUID id) {
         try{
             Optional<Situacao> situacao = situacaoRepository.findById(id);
             if(situacao.isPresent()){

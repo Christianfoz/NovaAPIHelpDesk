@@ -2,10 +2,12 @@ package com.example.refazendoapi.interfaces;
 
 import com.example.refazendoapi.model.Comentario;
 
+import java.util.UUID;
+
 public interface ComentarioInterface {
-    Comentario buscarComentario(int id);
+    Comentario buscarComentario(UUID id);
     Iterable<Comentario> listarComentarios();
     Comentario criarComentario(Comentario comentario);
-    Comentario atualizarComentario(int id, Comentario comentario);
-    Comentario deletarComentario(int id);
+    Comentario atualizarComentario(UUID id, Comentario comentario);
+    Comentario deletarComentario(UUID id);
 }

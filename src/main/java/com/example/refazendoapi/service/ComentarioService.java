@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class ComentarioService implements ComentarioInterface {
@@ -16,7 +17,7 @@ public class ComentarioService implements ComentarioInterface {
     private ComentarioRepository comentarioRepository;
 
     @Override
-    public Comentario buscarComentario(int id) {
+    public Comentario buscarComentario(UUID id) {
         try{
             Optional<Comentario> comentario = comentarioRepository.findById(id);
             if(comentario.isPresent()){
@@ -57,7 +58,7 @@ public class ComentarioService implements ComentarioInterface {
     }
 
     @Override
-    public Comentario atualizarComentario(int id, Comentario comentario) {
+    public Comentario atualizarComentario(UUID id, Comentario comentario) {
         try{
             Optional<Comentario> comentario1 = comentarioRepository.findById(comentario.getIdComentario());
             if(comentario1.isPresent()){
@@ -79,7 +80,7 @@ public class ComentarioService implements ComentarioInterface {
     }
 
     @Override
-    public Comentario deletarComentario(int id) {
+    public Comentario deletarComentario(UUID id) {
         try{
             Optional<Comentario> comentario1 = comentarioRepository.findById(id);
             if(comentario1.isPresent()){

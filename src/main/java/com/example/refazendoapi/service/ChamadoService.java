@@ -9,13 +9,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class ChamadoService implements ChamadoInterface {
     @Autowired
     private ChamadoRepository chamadoRepository;
     @Override
-    public Chamado buscarChamado(int id) {
+    public Chamado buscarChamado(UUID id) {
         try{
             Optional<Chamado> chamado = chamadoRepository.findById(id);
             if(chamado.isPresent()){
@@ -56,7 +57,7 @@ public class ChamadoService implements ChamadoInterface {
     }
 
     @Override
-    public Chamado atualizarChamado(int id, Chamado chamado) {
+    public Chamado atualizarChamado(UUID id, Chamado chamado) {
         try{
             Optional<Chamado> chamado1 = chamadoRepository.findById(chamado.getIdChamado());
             if(chamado1.isPresent()){
@@ -79,7 +80,7 @@ public class ChamadoService implements ChamadoInterface {
     }
 
     @Override
-    public Chamado deletarChamado(int id) {
+    public Chamado deletarChamado(UUID id) {
         try{
             Optional<Chamado> chamado1 = chamadoRepository.findById(id);
             if(chamado1.isPresent()){

@@ -10,6 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class PessoaService implements PessoaInterface {
@@ -47,7 +48,7 @@ public class PessoaService implements PessoaInterface {
     }
 
     @Override
-    public Pessoa buscarPorId(int id) {
+    public Pessoa buscarPorId(UUID id) {
         try{
             Optional<Pessoa> pessoa = pessoaRepository.findById(id);
             if(pessoa.isPresent()){
@@ -64,7 +65,7 @@ public class PessoaService implements PessoaInterface {
     }
 
     @Override
-    public Pessoa atualizarPessoa(int id, Pessoa pessoa) {
+    public Pessoa atualizarPessoa(UUID id, Pessoa pessoa) {
         try{
             Optional<Pessoa> pessoa1 = pessoaRepository.findById(id);
             if(pessoa1.isPresent()){
@@ -86,7 +87,7 @@ public class PessoaService implements PessoaInterface {
     }
 
     @Override
-    public Pessoa deletarPessoa(int id) {
+    public Pessoa deletarPessoa(UUID id) {
         try{
             Optional<Pessoa> pessoa = pessoaRepository.findById(id);
             if(pessoa.isPresent()){

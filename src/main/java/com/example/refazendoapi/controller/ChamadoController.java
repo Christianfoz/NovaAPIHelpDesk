@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
@@ -51,7 +52,7 @@ public class ChamadoController {
     @GetMapping("/{id}")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ApiOperation(value = "Buscar Chamado")
-    public ResponseEntity<Response<Chamado>> buscarChamado(@PathVariable("id") int id){
+    public ResponseEntity<Response<Chamado>> buscarChamado(@PathVariable("id") UUID id){
         Response<Chamado> response = new Response<>();
         response.setData(chamadoService.buscarChamado(id));
         response.setTimeStamp(LocalDateTime.now());
@@ -93,7 +94,7 @@ public class ChamadoController {
     @PutMapping("/{id}")
     @ApiOperation(value = "Atualizar Chamado")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
-    public ResponseEntity<Response<Chamado>> atualizarChamado(@PathVariable("id") int id,@Valid @RequestBody Chamado chamado){
+    public ResponseEntity<Response<Chamado>> atualizarChamado(@PathVariable("id") UUID id,@Valid @RequestBody Chamado chamado){
         Response<Chamado> response = new Response<>();
         response.setData(chamadoService.atualizarChamado(id, chamado));
         response.setTimeStamp(LocalDateTime.now());
@@ -114,7 +115,7 @@ public class ChamadoController {
     @DeleteMapping("/{id}")
     @ApiOperation(value = "Deletar Chamado")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
-    public ResponseEntity<Response<Chamado>> deletarChamado(@PathVariable("id") int id){
+    public ResponseEntity<Response<Chamado>> deletarChamado(@PathVariable("id") UUID id){
         Response<Chamado> response = new Response<>();
         response.setData(chamadoService.deletarChamado(id));
         response.setTimeStamp(LocalDateTime.now());

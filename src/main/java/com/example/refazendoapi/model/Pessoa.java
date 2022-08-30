@@ -8,6 +8,7 @@ import org.springframework.hateoas.RepresentationModel;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.Collection;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
@@ -16,7 +17,7 @@ public class Pessoa extends RepresentationModel<Pessoa>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_pessoa")
-    private Integer idPessoa;
+    private UUID idPessoa;
     @NotBlank(message = "Insira o nome")
     @Column(length = 20)
     @Size(min = 3, max = 20, message = "Campo nome deve ter no mínimo {min} e no máximo {max} caracteres")

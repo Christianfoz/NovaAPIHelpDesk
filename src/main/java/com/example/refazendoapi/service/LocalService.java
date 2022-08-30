@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class LocalService implements LocalInterface {
@@ -28,7 +29,7 @@ public class LocalService implements LocalInterface {
     }
 
     @Override
-    public Local buscarPorId(int id) {
+    public Local buscarPorId(UUID id) {
         try{
             Optional<Local> local = localRepository.findById(id);
             if(local.isPresent()){
@@ -57,7 +58,7 @@ public class LocalService implements LocalInterface {
     }
 
     @Override
-    public Local editarLocal(int id, Local local) {
+    public Local editarLocal(UUID id, Local local) {
         try{
             Optional<Local> local1 = localRepository.findById(id);
             if(local1.isPresent()){
@@ -75,7 +76,7 @@ public class LocalService implements LocalInterface {
     }
 
     @Override
-    public Local deletarLocal(int id) {
+    public Local deletarLocal(UUID id) {
         try{
             Optional<Local> local = localRepository.findById(id);
             if(local.isPresent()){

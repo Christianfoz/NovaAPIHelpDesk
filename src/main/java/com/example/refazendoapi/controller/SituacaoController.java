@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
@@ -51,7 +52,7 @@ public class SituacaoController {
     @ApiOperation(value = "Buscar Situação")
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Response<Situacao>> buscarSituacao(@PathVariable("id") int id){
+    public ResponseEntity<Response<Situacao>> buscarSituacao(@PathVariable("id") UUID id){
         Response<Situacao> response = new Response<>();
         response.setData(situacaoService.buscarSituacao(id));
         response.setTimeStamp(LocalDateTime.now());
@@ -93,7 +94,7 @@ public class SituacaoController {
     @ApiOperation(value = "Atualizar Situação")
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Response<Situacao>> atualizarSituacao(@PathVariable("id") int id, @Valid @RequestBody Situacao situacao){
+    public ResponseEntity<Response<Situacao>> atualizarSituacao(@PathVariable("id") UUID id, @Valid @RequestBody Situacao situacao){
         Response<Situacao> response = new Response<>();
         response.setData(situacaoService.atualizarSituacao(id, situacao));
         response.setStatusCode(HttpStatus.OK.value());
@@ -114,7 +115,7 @@ public class SituacaoController {
     @ApiOperation(value = "Deletar Situação")
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Response<Situacao>> deletarSituacao(@PathVariable("id") int id){
+    public ResponseEntity<Response<Situacao>> deletarSituacao(@PathVariable("id") UUID id){
         Response<Situacao> response = new Response<>();
         response.setData(situacaoService.deletarSituacao(id));
         response.setTimeStamp(LocalDateTime.now());

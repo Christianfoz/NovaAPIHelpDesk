@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
@@ -52,7 +53,7 @@ public class ComentarioController {
     @GetMapping("/{id}")
     @ApiOperation(value = "Buscar Comentario")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
-    public ResponseEntity<Response<Comentario>> buscarComentario(@PathVariable("id") int id){
+    public ResponseEntity<Response<Comentario>> buscarComentario(@PathVariable("id") UUID id){
         Response<Comentario> response = new Response<>();
         response.setData(comentarioService.buscarComentario(id));
         response.setTimeStamp(LocalDateTime.now());
@@ -94,7 +95,7 @@ public class ComentarioController {
     @PutMapping("/{id}")
     @ApiOperation(value = "Atualizar Comentário")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
-    public ResponseEntity<Response<Comentario>> atualizarComentário(@PathVariable("id") int id, @Valid @RequestBody Comentario comentario){
+    public ResponseEntity<Response<Comentario>> atualizarComentário(@PathVariable("id") UUID id, @Valid @RequestBody Comentario comentario){
         Response<Comentario> response = new Response<>();
         response.setData(comentarioService.atualizarComentario(id, comentario));
         response.setTimeStamp(LocalDateTime.now());
@@ -115,7 +116,7 @@ public class ComentarioController {
     @DeleteMapping("/{id}")
     @ApiOperation(value = "Deletar Comentário")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
-    public ResponseEntity<Response<Comentario>> deletarComentário(@PathVariable("id") int id){
+    public ResponseEntity<Response<Comentario>> deletarComentário(@PathVariable("id") UUID id){
         Response<Comentario> response = new Response<>();
         response.setData(comentarioService.deletarComentario(id));
         response.setTimeStamp(LocalDateTime.now());

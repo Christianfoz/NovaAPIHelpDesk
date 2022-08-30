@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class TipoPessoaService implements TipoPessoaInterface{
@@ -16,7 +17,7 @@ public class TipoPessoaService implements TipoPessoaInterface{
     private TipoPessoaRepository tipoPessoaRepository;
 
     @Override
-    public TipoPessoa buscarTipo(int id) {
+    public TipoPessoa buscarTipo(UUID id) {
         try{
             Optional<TipoPessoa> tipoPessoa = tipoPessoaRepository.findById(id);
             if(tipoPessoa.isPresent()){
@@ -55,7 +56,7 @@ public class TipoPessoaService implements TipoPessoaInterface{
     }
 
     @Override
-    public TipoPessoa atualizarTipo(int id, TipoPessoa tipoPessoa) {
+    public TipoPessoa atualizarTipo(UUID id, TipoPessoa tipoPessoa) {
         try{
             Optional<TipoPessoa> tipoPessoa1 = tipoPessoaRepository.findById(tipoPessoa.getIdTipo());
             if(tipoPessoa1.isPresent()){
@@ -77,7 +78,7 @@ public class TipoPessoaService implements TipoPessoaInterface{
     }
 
     @Override
-    public TipoPessoa deletarTipo(int id) {
+    public TipoPessoa deletarTipo(UUID id) {
         try{
             Optional<TipoPessoa> tipoPessoa1 = tipoPessoaRepository.findById(id);
             if(tipoPessoa1.isPresent()){

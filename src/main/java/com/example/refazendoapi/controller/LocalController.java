@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
@@ -28,7 +29,7 @@ public class LocalController {
     @GetMapping("/{id}")
     @ApiOperation(value = "Buscar Local")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
-    public ResponseEntity<Response<Local>> buscarLocalPorId(@PathVariable("id") int id){
+    public ResponseEntity<Response<Local>> buscarLocalPorId(@PathVariable("id") UUID id){
         Response<Local> response = new Response<>();
         response.setData(localService.buscarPorId(id));
         response.setStatusCode(HttpStatus.OK.value());
@@ -93,7 +94,7 @@ public class LocalController {
     @PutMapping("/{id}")
     @ApiOperation(value = "Atualizar local")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Response<Local>> atualizarLocal(@PathVariable("id") int id,@Valid @RequestBody Local local){
+    public ResponseEntity<Response<Local>> atualizarLocal(@PathVariable("id") UUID id,@Valid @RequestBody Local local){
         Response<Local> response = new Response<>();
         response.setData(localService.editarLocal(id, local));
         response.setStatusCode(HttpStatus.OK.value());
@@ -114,7 +115,7 @@ public class LocalController {
     @DeleteMapping("/{id}")
     @ApiOperation(value = "Deletar Local")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Response<Local>> deletarLocal(@PathVariable("id") int id){
+    public ResponseEntity<Response<Local>> deletarLocal(@PathVariable("id") UUID id){
         Response<Local> response = new Response<>();
         response.setData(localService.deletarLocal(id));
         response.setTimeStamp(LocalDateTime.now());

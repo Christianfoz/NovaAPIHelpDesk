@@ -7,6 +7,7 @@ import org.springframework.hateoas.RepresentationModel;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.ZonedDateTime;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
@@ -16,7 +17,7 @@ public class Chamado extends RepresentationModel<Chamado> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_chamado")
-    private Integer idChamado;
+    private UUID idChamado;
     @NotBlank(message = "Título não pode ser vazio")
     @Column(length = 40)
     @Size(min = 5, max = 40, message = "Campo titulo deve ter no mínimo  {min} e no máximo {max} caracteres")
