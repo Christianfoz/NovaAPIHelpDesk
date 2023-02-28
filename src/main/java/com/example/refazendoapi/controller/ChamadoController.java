@@ -28,7 +28,7 @@ public class ChamadoController {
 
     @GetMapping
     @ApiOperation(value = "Listar Chamados")
-    @PreAuthorize("hasAntRole('USER','ADMIN')")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public ResponseEntity<Response<Iterable<Chamado>>> listarChamados(){
         Response<Iterable<Chamado>> response = new Response<>();
         response.setData(chamadoService.listarChamados());

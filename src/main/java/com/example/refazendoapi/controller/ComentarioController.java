@@ -2,7 +2,6 @@ package com.example.refazendoapi.controller;
 
 import com.example.refazendoapi.config.SwaggerConfig;
 import com.example.refazendoapi.model.Comentario;
-import com.example.refazendoapi.model.Local;
 import com.example.refazendoapi.model.Response;
 import com.example.refazendoapi.service.ComentarioService;
 import io.swagger.annotations.Api;
